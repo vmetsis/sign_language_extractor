@@ -39,7 +39,7 @@ This ensures that you start with a clean slate and avoid any potential conflicts
 
 
 ### Modifying the code and re-running
-If you modify the code and want to re-run the app, you main need to rebuild the Docker image:
+If you modify the code and want to re-run the app, you may need to rebuild the Docker image:
 ```bash
 # 1. Stop the current container (if running)
 docker stop sign-app-instance
