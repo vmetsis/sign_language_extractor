@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Landmark Extractor</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .section { margin-bottom: 30px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        #webcamFeed { max-width: 100%; border: 1px solid black; }
+        #status, #uploadStatus { margin-top: 10px; font-style: italic; }
+        #resultsArea, #uploadResultsArea { margin-top: 15px; max-height: 200px; overflow-y: auto; background: #f0f0f0; padding: 10px; border: 1px solid #ddd; font-size: 0.9em; white-space: pre-wrap; word-wrap: break-word; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Language Landmark Extractor</h1>
+
+        <!-- Section 1: Video Upload -->
+        <div class="section">
+            <h2>1. Upload Video File</h2>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <input type="file" id="videoFile" name="video" accept="video/*" required>
+                <button type="submit">Upload and Process</button>
+            </form>
+            <div id="uploadStatus"></div>
+            <div id="uploadResultsArea" class="hidden">
+                <h4>Processing Result:</h4>
+                <pre id="uploadResultData"></pre>
+                <a id="downloadLink" href="#" download>Download Landmark Data (JSON)</a>
+            </div>
+        </div>
+
+        <!-- Section 2: Webcam Capture -->
+        <div class="section">
+            <h2>2. Capture via Webcam</h2>
+            <div>
+                <video id="webcamFeed" autoplay playsinline></video>
+                <canvas id="canvas" style="display: none;"></canvas> <!-- Hidden canvas for frame grabbing -->
+            </div>
+            <div>
+                <button id="startButton">Start Capture</button>
+                <button id="stopButton" disabled>Stop Capture & Save Data</button>
+            </div>
+            <div id="status">Ready.</div>
+             <div id="resultsArea" class="hidden">
+                <h4>Collected Landmark Sequence (Preview):</h4>
+                 <p><span id="frameCount">0</span> frames collected.</p>
+                 <a id="webcamDownloadLink" href="#" download="webcam_landmarks.json">Download Collected Data (JSON)</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Socket.IO client library -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <!-- Include your custom JavaScript -->
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
