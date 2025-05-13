@@ -109,3 +109,16 @@ The structure of each JSON file is as follows:
 ## Future Use
 
 The generated JSON files provide a structured time-series representation of the motion capture data. This format is well-suited as input for training deep learning models, such as LSTMs, GRUs, Transformers, or Temporal Convolutional Networks (TCNs), for tasks like isolated sign language recognition or gesture classification. The fixed feature length per frame simplifies data loading and batching.
+
+## Loading the JSON Data into a Numpy Array
+To load the JSON data into a Numpy array for further processing or model training, you can use the following script:
+
+```bash
+# To load only hand data, pad/truncate to 100 frames, and save:
+python create_npy_dataset.py \
+    --input_dir ./landmark_data \
+    --output_file ./datasets/hands_only_len100.npy \
+    --landmarks LeftHand RightHand \
+    --max_len 100
+```
+This command will create a Numpy array with the specified landmarks, padded or truncated to 100 frames, and save it as `hands_only_len100.npy` in the `./datasets` directory.
